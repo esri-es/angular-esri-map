@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="esri-map-example">
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.12/esri/css/esri.css">
+  </head>
+  <body ng-controller="MapController">
+
+    <div class="container">
+      <div class="header">
+          <h1 class="text-muted">Sample / Boilerplate / Blueprint</h1>
+      </div>
+
+      <div class="row">
+        
+        <div class="col-md-8">
+          
+          <esri-map id="map" center="map.center" zoom="map.zoom" basemap="streets">
+            <esri-feature-layer url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Portland_Parks/FeatureServer/0"></esri-feature-layer>
+            <esri-feature-layer url="http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Heritage_Trees_Portland/FeatureServer/0"></esri-feature-layer>
+          </esri-map>
+
+        </div>
+        
+        <div class="col-md-4">
+        
+          <ul>
+            <li>Lat: {{ map.center.lat | number:3 }}</li>
+            <li>Lng: {{ map.center.lng | number:3 }}</li>
+            <li>Zoom: {{map.zoom}}</li>
+          </ul>
+        
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="http://js.arcgis.com/3.12compact"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+    <script src="/bower_components/angular-esri-map/dist/angular-esri-map.js"></script>
+    <script type="text/javascript">
+        angular.module('esri-map-example', ['esri.map'])
+            .controller('MapController', function ($scope) {
+              $scope.map = {
+                center: {
+                  lng: -6.291,
+                  lat: 36.528
+                },
+                zoom: 14
+              };
+            });
+    </script>
+  </body>
+</html>
